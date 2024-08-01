@@ -8,6 +8,13 @@
 </head>
 
 <body>
+      <?php
+      $uri = $_SERVER["REQUEST_URI"];
+
+      if ($uri === "/result") {
+            include "result_view.php";
+      };
+      ?>
       <div class="container">
             <div class="header">
                   <h1>ViewPass</h1>
@@ -67,11 +74,11 @@
                   <div class="ticket_container">
                         <div class="ticket_avail">
                               <h2>Tickets available:</h2>
-                              <input type="text" id="tickets" name="tickets" value="">
+                              <input type="text" id="tickets" name="tickets" value="" placeholder="Enter amount">
                         </div>
                         <div class="ticket_price">
                               <h2>Price per ticket:</h2>
-                              <input type="text" id="price" name="price" value="">
+                              <input type="text" id="price" name="price" value="" placeholder="Enter amount">
                         </div>
                         <div class="ticket_button">
                               <button id="calculate">Calculate</button>
@@ -79,6 +86,26 @@
                   </div>
             </div>
       </div>
+      <script>
+            document.getElementById('price').addEventListener('input', function(e) {
+                  const input = e.target;
+                  let value = input.value;
+
+                  value = value.replace(/[^0-9.]/g, '');
+
+                  input.value = value ? `$${value}` : '';
+            });
+
+            document.getElementById('tickets').addEventListener('input', function(e) {
+                  const input = e.target;
+                  let value = input.value;
+
+                  value = value.replace(/[^0-9.]/g, "");
+
+                  input.value = value ? `${value}` : '';
+            });
+      </script>
+
 </body>
 
 <style>
@@ -126,7 +153,7 @@
             justify-content: center;
             flex-direction: column;
             width: 20%;
-            transition: transform .2s;
+            transition: transform .5s;
       }
 
       .image:hover {
