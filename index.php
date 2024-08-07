@@ -8,13 +8,6 @@
 </head>
 
 <body>
-      <?php
-      $uri = $_SERVER["REQUEST_URI"];
-
-      if ($uri === "/result") {
-            include "result_view.php";
-      };
-      ?>
       <div class="container">
             <div class="header">
                   <h1>ViewPass</h1>
@@ -86,6 +79,7 @@
                   </div>
             </div>
       </div>
+
       <script>
             document.getElementById('price').addEventListener('input', function(e) {
                   const input = e.target;
